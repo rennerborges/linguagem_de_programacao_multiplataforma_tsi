@@ -4,9 +4,11 @@
  */
 package t1.pkg1;
 
+import java.util.ArrayList;
+
 import t1.pkg1.controller.Endereco;
 import t1.pkg1.controller.Telefone;
-
+import t1.pkg1.controller.Cliente;
 
 /**
  *
@@ -19,9 +21,23 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.println(new Endereco("Rua x", "Morrinhos"));
-        System.out.println(new Telefone("64", "99999999"));
+        Endereco endereco = new Endereco("Rua x", "Morrinhos");
+        Telefone telefone1 = new Telefone("64", "99999999");
+        Telefone telefone2 = new Telefone("44", "00000000");
 
+        
+        ArrayList<Telefone> telefones = new ArrayList();
+        
+        telefones.add(telefone1);
+        telefones.add(telefone2);
+        
+        Cliente renner = new Cliente("Renner", "0000000000",telefones, endereco);
+        
+        renner.print();
+          
+
+        
+        
     }
     
 }
