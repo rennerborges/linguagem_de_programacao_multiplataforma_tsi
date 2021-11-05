@@ -101,7 +101,12 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", telefones=" + telefones + ", endereco=" + endereco + '}';
+        if(telefones != null){
+            return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", telefones=" + telefones + ", endereco=" + endereco + '}';
+        }
+        
+        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + '}';
+        
     }
     
     public void print(){
