@@ -16,6 +16,8 @@ import t1.pkg1.controller.Fornecedor;
 import java.sql.*;
 import model.BancoDados;
 import model.CargoDAO;
+import model.ClienteDAO;
+import model.ClienteEnderecoDAO;
 
 import model.DBString;
 import t1.pkg1.controller.Cargo;
@@ -30,31 +32,20 @@ public class Main {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        Endereco enderecoCliente = new Endereco("Rua x", "Morrinhos");
-        Telefone telefoneCliente1 = new Telefone("64", "99999999");
-        Telefone telefoneCliente2 = new Telefone("44", "00000000");
+        
+        Cliente cliente = new Cliente("Renner Borges", "04447289105");
+        Endereco endereco = new Endereco(1,"Rua da saudade", "Jardim América", "Morrinhos", "GO", "Brazil", "75650000");
+        
+//        ClienteDAO.create(cliente);
+//        ClienteEnderecoDao.create(endereco);
 
-        
-        ArrayList<Telefone> telefonesCliente = new ArrayList();
-        
-        telefonesCliente.add(telefoneCliente1);
-        telefonesCliente.add(telefoneCliente2);
-        
-        Cliente renner = new Cliente("Renner", "0000000000",telefonesCliente, enderecoCliente);
-        
-//        renner.print();
-        
-        Endereco enderecoFornecedor = new Endereco("Rua y", "Caldas Novas");
-        Telefone telefoneFornecedor1 = new Telefone("84", "84444444");
-        Telefone telefoneFornecedor2 = new Telefone("11", "87444444");
+//        System.out.println(ClienteEnderecoDao.retrieve(1));
 
-        ArrayList<Telefone> telefonesFornecedor = new ArrayList();
+        Endereco endereco2 = ClienteEnderecoDAO.retrieve(1);
+        endereco2.setBairro("Setor aeroporto");
         
-        telefonesFornecedor.add(telefoneFornecedor1);
-        telefonesFornecedor.add(telefoneFornecedor2);
-        
-        Fornecedor gisele = new Fornecedor("Gisele", "000000", telefonesFornecedor, enderecoFornecedor);
-        
+        ClienteEnderecoDAO.delete(endereco2);
+
 //        gisele.print();
 
 //        Connection conn = BancoDados.createConnection();

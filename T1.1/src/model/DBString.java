@@ -9,7 +9,7 @@ package model;
  * @author renner
  */
 public class DBString {
-    public static final String URL = "jdbc:postgresql://localhost:5432/TESTE";
+    public static final String URL = "jdbc:postgresql://localhost:5432/LPM";
     public static final String USER = "postgres";
     public static final String PASSWORD = "postgres";
     public static final String DRIVER = "org.postgresql.Driver";

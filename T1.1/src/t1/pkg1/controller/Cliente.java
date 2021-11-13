@@ -12,22 +12,32 @@ import java.util.Objects;
  * @author renner
  */
 public class Cliente {
+     
     private String nome;
     private String cpf;
-    private ArrayList<Telefone> telefones;
-    private Endereco endereco;
+    private ArrayList<Endereco> enderecos;
+    
+    private int pk_cliente;
 
-    public Cliente(String nome, String cpf, Endereco endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.endereco = endereco;
+    public Cliente() {
     }
 
-    public Cliente(String nome, String cpf, ArrayList<Telefone> telefones, Endereco endereco) {
+    public Cliente(String nome, String cpf, ArrayList<Endereco> enderecos, int pk_cliente) {
         this.nome = nome;
         this.cpf = cpf;
-        this.telefones = telefones;
-        this.endereco = endereco;
+        this.enderecos = enderecos;
+        this.pk_cliente = pk_cliente;
+    }
+
+    public Cliente(String nome, String cpf, ArrayList<Endereco> enderecos) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.enderecos = enderecos;
+    }
+
+    public Cliente(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -46,29 +56,29 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public ArrayList<Telefone> getTelefones() {
-        return telefones;
+    public ArrayList<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setTelefones(ArrayList<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setEnderecos(ArrayList<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public int getPk_cliente() {
+        return pk_cliente;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setPk_cliente(int pk_cliente) {
+        this.pk_cliente = pk_cliente;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 59 * hash + Objects.hashCode(this.nome);
-        hash = 59 * hash + Objects.hashCode(this.cpf);
-        hash = 59 * hash + Objects.hashCode(this.telefones);
-        hash = 59 * hash + Objects.hashCode(this.endereco);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.nome);
+        hash = 23 * hash + Objects.hashCode(this.cpf);
+        hash = 23 * hash + Objects.hashCode(this.enderecos);
+        hash = 23 * hash + this.pk_cliente;
         return hash;
     }
 
@@ -84,16 +94,16 @@ public class Cliente {
             return false;
         }
         final Cliente other = (Cliente) obj;
+        if (this.pk_cliente != other.pk_cliente) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.telefones, other.telefones)) {
-            return false;
-        }
-        if (!Objects.equals(this.endereco, other.endereco)) {
+        if (!Objects.equals(this.enderecos, other.enderecos)) {
             return false;
         }
         return true;
@@ -101,15 +111,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        
-        String telefonesPrint = this.telefones != null ? (", telefones=" + this.telefones) : "";  
- 
-        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + telefonesPrint + ", endereco=" + endereco + '}';
-
+        return "Cliente{" + "nome=" + nome + ", cpf=" + cpf + ", enderecos=" + enderecos + ", pk_cliente=" + pk_cliente + '}';
     }
-    
-    public void print(){
-        System.out.println(this);
-    }
-    
 }
