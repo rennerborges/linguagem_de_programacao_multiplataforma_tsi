@@ -5,12 +5,20 @@
 package t1.pkg1;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import t1.pkg1.controller.Endereco;
 import t1.pkg1.controller.Telefone;
 import t1.pkg1.controller.Cliente;
 import t1.pkg1.controller.Fornecedor;
 
+import java.sql.*;
+import model.BancoDados;
+import model.CargoDAO;
+
+import model.DBString;
+import t1.pkg1.controller.Cargo;
 /**
  *
  * @author renner
@@ -20,7 +28,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         Endereco enderecoCliente = new Endereco("Rua x", "Morrinhos");
         Telefone telefoneCliente1 = new Telefone("64", "99999999");
@@ -34,7 +42,7 @@ public class Main {
         
         Cliente renner = new Cliente("Renner", "0000000000",telefonesCliente, enderecoCliente);
         
-        renner.print();
+//        renner.print();
         
         Endereco enderecoFornecedor = new Endereco("Rua y", "Caldas Novas");
         Telefone telefoneFornecedor1 = new Telefone("84", "84444444");
@@ -47,11 +55,20 @@ public class Main {
         
         Fornecedor gisele = new Fornecedor("Gisele", "000000", telefonesFornecedor, enderecoFornecedor);
         
-        gisele.print();
-          
+//        gisele.print();
 
-        
-        
+//        Connection conn = BancoDados.createConnection();
+//        conn.createStatement().execute("INSERT INTO CARGO (NOME) VALUES ('Java senior')");
+
+//          Cargo c1 = new Cargo("Gerente Geral", "Gerencia os gerentes");
+//          
+//          CargoDAO.create(c1);
+
+//        for(Cargo aux: CargoDAO.retreaveAll()){
+//            System.out.println(aux);
+//        }
+
+           System.out.println(CargoDAO.retreave(1));
     }
     
 }
