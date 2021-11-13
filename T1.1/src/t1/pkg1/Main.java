@@ -33,19 +33,17 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
         
-        Cliente cliente = new Cliente("Renner Borges", "04447289105");
-        Endereco endereco = new Endereco(1,"Rua da saudade", "Jardim América", "Morrinhos", "GO", "Brazil", "75650000");
-        
-//        ClienteDAO.create(cliente);
-//        ClienteEnderecoDao.create(endereco);
+        Endereco endereco1 = new Endereco("Rua da saudade", "Jardim América", "Morrinhos", "GO", "Brazil", "75650000");
+        Endereco endereco2 = new Endereco("Alameda sul", "Setor aeroporto", "Morrinhos", "GO", "Brazil", "75650000");
+        ArrayList<Endereco> enderecos = new ArrayList<>();
+        enderecos.add(endereco1);
+        enderecos.add(endereco2);
+//       
+        Cliente cliente = new Cliente("Gisele Santos", "99999999999", enderecos, 6);
+        ClienteDAO.update(cliente);
 
-//        System.out.println(ClienteEnderecoDao.retrieve(1));
-
-        Endereco endereco2 = ClienteEnderecoDAO.retrieve(1);
-        endereco2.setBairro("Setor aeroporto");
-        
-        ClienteEnderecoDAO.delete(endereco2);
-
+        ClienteDAO.delete(4);
+        System.out.println(ClienteDAO.retrieve(4));
 //        gisele.print();
 
 //        Connection conn = BancoDados.createConnection();
