@@ -60,15 +60,21 @@ public class Main {
 //        Connection conn = BancoDados.createConnection();
 //        conn.createStatement().execute("INSERT INTO CARGO (NOME) VALUES ('Java senior')");
 
-//          Cargo c1 = new Cargo("Gerente Geral", "Gerencia os gerentes");
-//          
-//          CargoDAO.create(c1);
+//        Cargo c1 = new Cargo("Gerente de TI2", "Gerencia o TI");
+//
+//        CargoDAO.create(c1);
+//
+//        System.out.println(c1.getPk_cargo());
 
 //        for(Cargo aux: CargoDAO.retreaveAll()){
 //            System.out.println(aux);
 //        }
 
-           System.out.println(CargoDAO.retreave(1));
+//        System.out.println(CargoDAO.retreave(1));
+           
+//        Cargo x = CargoDAO.retreave(4);
+//        x.setNome("Secretário Geral da Onu");
+//        CargoDAO.update(x);                   
     }
     
 }

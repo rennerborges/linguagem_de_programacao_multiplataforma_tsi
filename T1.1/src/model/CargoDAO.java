@@ -23,13 +23,15 @@ public class CargoDAO {
     public static void create(Cargo c) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        PreparedStatement stm = conn.prepareStatement("INSERT INTO CARGO (NOME, DESCRICAO) VALUES (?,?)");
+        PreparedStatement stm = conn.prepareStatement(
+                "INSERT INTO CARGO (NOME, DESCRICAO) VALUES (?,?)",
+                Statement.RETURN_GENERATED_KEYS
+        );
+     
         stm.setString(1, c.getNome());
         stm.setString(2, c.getDescricao());
         stm.execute();
         
-        stm.close();
-
         ResultSet pks = stm.getGeneratedKeys();
         
         pks.next();
@@ -37,6 +39,8 @@ public class CargoDAO {
         int pkGerado = pks.getInt(1); 
         
         c.setPk_cargo(pkGerado);
+        
+        stm.close();
 
     }
     
@@ -81,5 +85,28 @@ public class CargoDAO {
         }
 
         return aux;
+    }
+    
+    public static void delete(int pk) throws SQLException{
+        Connection conn = BancoDados.createConnection();
+        
+        conn.createStatement().execute("DELETE FROM cargo WHERE pk_cargo="+ pk);
+    }
+    
+    public static void delete(Cargo c)throws SQLException{
+        delete(c.getPk_cargo());
+    }
+    
+    public static void update(Cargo cargo) throws SQLException{
+        Connection conn = BancoDados.createConnection();
+        
+        PreparedStatement stm = conn.prepareStatement("UPDATE cargo SET nome = ?, DESCRICAO = ? WHERE pk_cargo = ?");
+        
+        stm.setString(1, cargo.getNome());
+        stm.setString(2, cargo.getDescricao());
+        stm.setInt(3, cargo.getPk_cargo());
+
+        stm.execute();
+        stm.close();
     }
 }
