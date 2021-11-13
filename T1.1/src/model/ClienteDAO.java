@@ -61,7 +61,7 @@ public class ClienteDAO {
             
             ArrayList<Endereco> enderecos = ClienteEnderecoDAO.retrieveAllByCliente(pk_cliente);
             
-            cliente = new Cliente(nome, cpf, enderecos);
+            cliente = new Cliente(nome, cpf, enderecos, pk_cliente);
         }
         
         return cliente;
@@ -81,7 +81,7 @@ public class ClienteDAO {
             
             ArrayList<Endereco> enderecos = ClienteEnderecoDAO.retrieveAllByCliente(pk_cliente);
             
-            aux.add(new Cliente(nome, cpf, enderecos));
+            aux.add(new Cliente(nome, cpf, enderecos, pk_cliente));
         }
         
         return aux;
@@ -108,5 +108,28 @@ public class ClienteDAO {
         stm.execute();
         
         stm.close();
+        
+        ArrayList<Endereco> enderecos = cliente.getEnderecos();
+        
+        //Percorrendo o array de endereços verificando se existe para atualizar
+        //Ou se é para ser criado        
+        
+        for(Endereco endereco: enderecos){
+            
+            if(endereco.getPk_endereco() == 0){
+                endereco.setFk_usuario(cliente.getPk_cliente());
+                System.out.println("---------");
+                System.out.println(cliente);
+                System.out.println(endereco);
+                ClienteEnderecoDAO.create(endereco);
+                continue;
+            }
+            
+            ClienteEnderecoDAO.update(endereco);
+        }
+        
     }
+
 }
+
+

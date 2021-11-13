@@ -38,12 +38,23 @@ public class Main {
         ArrayList<Endereco> enderecos = new ArrayList<>();
         enderecos.add(endereco1);
         enderecos.add(endereco2);
-//       
-        Cliente cliente = new Cliente("Gisele Santos", "99999999999", enderecos, 6);
-        ClienteDAO.update(cliente);
 
-        ClienteDAO.delete(4);
-        System.out.println(ClienteDAO.retrieve(4));
+//        Cliente cliente = new Cliente("Gisele Santos", "99999999999", enderecos, 6);
+//        ClienteDAO.update(cliente);
+//
+//        ClienteDAO.delete(4);
+
+        Cliente recuperado = ClienteDAO.retrieve(6);
+        System.out.println(recuperado);
+        ArrayList<Endereco> enderecoRecuperado = recuperado.getEnderecos();
+        Endereco endereco3 = new Endereco("Rua x", "Alameda B", "Goiania", "GO", "Brazil", "75650000");
+        enderecoRecuperado.add(endereco3);
+        
+        enderecoRecuperado.get(1).setBairro("OLOKINHO");
+        
+        recuperado.setEnderecos(enderecoRecuperado);
+//        ClienteDAO.update(recuperado);
+        
 //        gisele.print();
 
 //        Connection conn = BancoDados.createConnection();
