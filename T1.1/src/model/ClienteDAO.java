@@ -94,6 +94,10 @@ public class ClienteDAO {
 
     }
     
+    public static void delete(Cliente cliente) throws SQLException{
+        delete(cliente.getPk_cliente());
+    }
+    
     public static void update(Cliente cliente) throws SQLException{
          Connection conn = BancoDados.createConnection();
         
@@ -118,9 +122,6 @@ public class ClienteDAO {
             
             if(endereco.getPk_endereco() == 0){
                 endereco.setFk_usuario(cliente.getPk_cliente());
-                System.out.println("---------");
-                System.out.println(cliente);
-                System.out.println(endereco);
                 ClienteEnderecoDAO.create(endereco);
                 continue;
             }

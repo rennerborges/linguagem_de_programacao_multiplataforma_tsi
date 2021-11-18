@@ -39,20 +39,21 @@ public class Main {
         enderecos.add(endereco1);
         enderecos.add(endereco2);
 
-//        Cliente cliente = new Cliente("Gisele Santos", "99999999999", enderecos, 6);
-//        ClienteDAO.update(cliente);
+//        Cliente cliente = new Cliente("Gisele Santos", "11111111111", enderecos);
+//        ClienteDAO.create(cliente);
 //
 //        ClienteDAO.delete(4);
 
-        Cliente recuperado = ClienteDAO.retrieve(6);
+        Cliente recuperado = ClienteDAO.retrieve(7);
+
         System.out.println(recuperado);
-        ArrayList<Endereco> enderecoRecuperado = recuperado.getEnderecos();
-        Endereco endereco3 = new Endereco("Rua x", "Alameda B", "Goiania", "GO", "Brazil", "75650000");
-        enderecoRecuperado.add(endereco3);
-        
-        enderecoRecuperado.get(1).setBairro("OLOKINHO");
-        
-        recuperado.setEnderecos(enderecoRecuperado);
+//        ArrayList<Endereco> enderecoRecuperado = recuperado.getEnderecos();
+//        Endereco endereco3 = new Endereco("Rua x", "Alameda B", "Goiania", "GO", "Brazil", "75650000");
+//        enderecoRecuperado.add(endereco3);
+//        
+//        enderecoRecuperado.get(1).setBairro("OLOKINHO");
+//        
+//        recuperado.setEnderecos(enderecoRecuperado);
 //        ClienteDAO.update(recuperado);
         
 //        gisele.print();
