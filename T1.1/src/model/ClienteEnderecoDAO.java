@@ -92,7 +92,7 @@ public class ClienteEnderecoDAO {
         return aux;
     }
     
-        public static ArrayList<Endereco> retrieveAllByCliente(int fk_cliente) throws SQLException{
+    public static ArrayList<Endereco> retrieveAllByCliente(int fk_cliente) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM cliente_endereco WHERE fk_cliente ="+ fk_cliente + "ORDER BY pk_endereco");
@@ -116,7 +116,7 @@ public class ClienteEnderecoDAO {
     
     public static void update(Endereco endereco) throws SQLException{
         
-        if(endereco.getStatus() == Endereco.ALTERADO){
+        if(endereco.getStatus() != Endereco.ALTERADO){
             return;
         }
        

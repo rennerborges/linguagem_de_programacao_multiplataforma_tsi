@@ -17,7 +17,7 @@ public class FornecedorEnderecoDAO {
         Connection conn = BancoDados.createConnection();
         
         PreparedStatement stm = conn.prepareStatement(
-                "INSERT INTO fornecedor_endereco (fk_cliente, logradouro, bairro, cidade, estado, pais, cep) VALUES (?,?,?,?,?,?,?)",
+                "INSERT INTO fornecedor_endereco (fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep) VALUES (?,?,?,?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS
         );
         
@@ -50,7 +50,7 @@ public class FornecedorEnderecoDAO {
         Endereco endereco = null;
         
         if(rs.next()){
-            int fk_cliente = rs.getInt("fk_cliente");
+            int fk_fornecedor = rs.getInt("fk_fornecedor");
             String logradouro = rs.getString("logradouro");
             String bairro = rs.getString("bairro");
             String cidade = rs.getString("cidade");
@@ -58,7 +58,7 @@ public class FornecedorEnderecoDAO {
             String pais = rs.getString("pais");
             String cep = rs.getString("cep");
             
-            endereco = new Endereco(pk, fk_cliente, logradouro, bairro, cidade, estado, pais, cep);
+            endereco = new Endereco(pk, fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep);
         }
             
         return endereco;
@@ -77,7 +77,7 @@ public class FornecedorEnderecoDAO {
         
         while(rs.next()){
             int pk_endereco = rs.getInt("pk_endereco");
-            int fk_cliente = rs.getInt("fk_cliente");
+            int fk_fornecedor = rs.getInt("fk_fornecedor");
             String logradouro = rs.getString("logradouro");
             String bairro = rs.getString("bairro");
             String cidade = rs.getString("cidade");
@@ -85,7 +85,7 @@ public class FornecedorEnderecoDAO {
             String pais = rs.getString("pais");
             String cep = rs.getString("cep");
             
-            aux.add(new Endereco(pk_endereco, fk_cliente, logradouro, bairro, cidade, estado, pais, cep));
+            aux.add(new Endereco(pk_endereco, fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep));
         }
             
         return aux;
@@ -114,16 +114,18 @@ public class FornecedorEnderecoDAO {
     }
     public static void update(Endereco endereco) throws SQLException{
         
-        if(endereco.getStatus() == Endereco.ALTERADO){
+        if(endereco.getStatus() != Endereco.ALTERADO){
             return;
         }
        
         Connection conn = BancoDados.createConnection();
 
         PreparedStatement stm = conn.prepareStatement(
-                "UPDATE fornecedor_endereco SET fk_cliente = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, cep = ? WHERE pk_endereco = ?"
+                "UPDATE fornecedor_endereco SET fk_fornecedor = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, cep = ? WHERE pk_endereco = ?"
         );
         
+        System.out.println(endereco.getBairro());
+         
         stm.setInt(1, endereco.getFk_usuario());
         stm.setString(2, endereco.getLogradouro());
         stm.setString(3, endereco.getBairro());
