@@ -67,6 +67,10 @@ public class ClienteDAO {
         return cliente;
     }
     
+    public static Cliente retrieve(Cliente cliente) throws SQLException{
+        return retrieve(cliente.getPk_cliente());
+    }
+    
     public static ArrayList<Cliente> retrieveAll() throws SQLException{
         Connection conn = BancoDados.createConnection();
         
@@ -118,7 +122,15 @@ public class ClienteDAO {
         //Percorrendo o array de endereços verificando se existe para atualizar
         //Ou se é para ser criado        
         
-        for(Endereco endereco: enderecos){
+        for(int i = 0; i < enderecos.size(); i++ ){
+            Endereco endereco = cliente.getEnderecos().get(i);
+            
+            if(endereco.getStatus() == Endereco.EXCLUIDO){
+                ClienteEnderecoDAO.delete(endereco);
+                cliente.getEnderecos().remove(endereco);
+                i--;
+                continue;
+            }
             
             if(endereco.getPk_endereco() == 0){
                 endereco.setFk_usuario(cliente.getPk_cliente());

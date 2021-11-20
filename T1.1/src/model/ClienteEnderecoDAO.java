@@ -65,10 +65,14 @@ public class ClienteEnderecoDAO {
         return endereco;
     }
     
+    public static Endereco retrieve(Endereco endereco) throws SQLException{
+        return retrieve(endereco.getPk_endereco());
+    }
+
     public static ArrayList<Endereco> retrieveAll() throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM cliente_endereco");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM cliente_endereco ORDER BY pk_endereco");
         
         ArrayList<Endereco> aux = new ArrayList<>();
         
@@ -91,7 +95,7 @@ public class ClienteEnderecoDAO {
         public static ArrayList<Endereco> retrieveAllByCliente(int fk_cliente) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM cliente_endereco WHERE fk_cliente ="+ fk_cliente);
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM cliente_endereco WHERE fk_cliente ="+ fk_cliente + "ORDER BY pk_endereco");
         
         ArrayList<Endereco> aux = new ArrayList<>();
         
@@ -111,8 +115,13 @@ public class ClienteEnderecoDAO {
     }
     
     public static void update(Endereco endereco) throws SQLException{
-        Connection conn = BancoDados.createConnection();
         
+        if(endereco.getStatus() == Endereco.ALTERADO){
+            return;
+        }
+       
+        Connection conn = BancoDados.createConnection();
+
         PreparedStatement stm = conn.prepareStatement(
                 "UPDATE cliente_endereco SET fk_cliente = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, cep = ? WHERE pk_endereco = ?"
         );
@@ -129,6 +138,8 @@ public class ClienteEnderecoDAO {
         stm.execute();
         
         stm.close();
+        
+        endereco.resetStatus();
     }
     
     

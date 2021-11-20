@@ -11,8 +11,15 @@ import java.util.Objects;
  * @author renner
  */
 public class Endereco {
+   
+    public static final int INALTERADO = 0;
+    public static final int ALTERADO = 1;
+    public static final int EXCLUIDO = 2;
+
+    
     private int pk_endereco;
     private int fk_usuario;
+    
     private String logradouro;
     private String bairro;
     private String cidade;
@@ -20,6 +27,10 @@ public class Endereco {
     private String pais;
     private String cep;
 
+    private int status = INALTERADO;
+    
+    public Endereco(){}
+    
     public Endereco(int pk_endereco, int fk_usuario, String logradouro, String bairro, String cidade, String estado, String pais, String cep) {
         this.pk_endereco = pk_endereco;
         this.fk_usuario = fk_usuario;
@@ -49,13 +60,27 @@ public class Endereco {
         this.pais = pais;
         this.cep = cep;
     }
+    
+    public int getStatus() {
+        return this.status;
+    }
+    
+    public void markAsDeleted(){
+        this.status = EXCLUIDO;
+    }
+    
+    public void resetStatus(){
+        this.status = INALTERADO;
+    }
 
     public int getPk_endereco() {
         return pk_endereco;
     }
 
     public void setPk_endereco(int pk_endereco) {
-        this.pk_endereco = pk_endereco;
+        if(this.pk_endereco == 0){
+            this.pk_endereco = pk_endereco;
+        }
     }
 
     public int getFk_usuario() {
@@ -63,6 +88,7 @@ public class Endereco {
     }
 
     public void setFk_usuario(int fk_usuario) {
+        this.status = ALTERADO;
         this.fk_usuario = fk_usuario;
     }
 
@@ -71,6 +97,7 @@ public class Endereco {
     }
 
     public void setLogradouro(String logradouro) {
+        this.status = ALTERADO;
         this.logradouro = logradouro;
     }
 
@@ -79,6 +106,7 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) {
+        this.status = ALTERADO;
         this.bairro = bairro;
     }
 
@@ -87,6 +115,7 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) {
+        this.status = ALTERADO;
         this.cidade = cidade;
     }
 
@@ -95,6 +124,7 @@ public class Endereco {
     }
 
     public void setEstado(String estado) {
+        this.status = ALTERADO;
         this.estado = estado;
     }
 
@@ -103,6 +133,7 @@ public class Endereco {
     }
 
     public void setPais(String pais) {
+        this.status = ALTERADO;
         this.pais = pais;
     }
 
@@ -111,6 +142,7 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
+        this.status = ALTERADO;
         this.cep = cep;
     }
 

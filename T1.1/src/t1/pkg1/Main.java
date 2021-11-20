@@ -44,9 +44,11 @@ public class Main {
 //
 //        ClienteDAO.delete(4);
 
-        Cliente recuperado = ClienteDAO.retrieve(7);
-
-        System.out.println(recuperado);
+//        Cliente recuperado = ClienteDAO.retrieve(7);
+//        recuperado.getEnderecos().get(0).markAsDeleted();
+//        ClienteDAO.update(recuperado);
+//        System.out.println(recuperado);
+       
 //        ArrayList<Endereco> enderecoRecuperado = recuperado.getEnderecos();
 //        Endereco endereco3 = new Endereco("Rua x", "Alameda B", "Goiania", "GO", "Brazil", "75650000");
 //        enderecoRecuperado.add(endereco3);
