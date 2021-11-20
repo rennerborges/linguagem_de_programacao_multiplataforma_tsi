@@ -12,16 +12,26 @@ import java.util.Objects;
  * @author renner
  */
 public class Fornecedor {
-       private String nome;
-       private String cnpj;
-       private ArrayList<Telefone> telefones;
-       private Endereco endereco;
+    private String nome;
+    private String cpf;
+    private ArrayList<Endereco> enderecos;
+    
+    private int pk;
 
-    public Fornecedor(String nome, String cnpj, ArrayList<Telefone> telefones, Endereco endereco) {
+    public Fornecedor() {
+    }
+
+    public Fornecedor(String nome, String cpf, ArrayList<Endereco> enderecos) {
         this.nome = nome;
-        this.cnpj = cnpj;
-        this.telefones = telefones;
-        this.endereco = endereco;
+        this.cpf = cpf;
+        this.enderecos = enderecos;
+    }
+
+    public Fornecedor(String nome, String cpf, ArrayList<Endereco> enderecos, int pk) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.enderecos = enderecos;
+        this.pk = pk;
     }
 
     public String getNome() {
@@ -32,33 +42,39 @@ public class Fornecedor {
         this.nome = nome;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public ArrayList<Telefone> getTelefones() {
-        return telefones;
+    public ArrayList<Endereco> getEnderecos() {
+        return enderecos;
     }
 
-    public void setTelefones(ArrayList<Telefone> telefones) {
-        this.telefones = telefones;
+    public void setEnderecos(ArrayList<Endereco> enderecos) {
+        this.enderecos = enderecos;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public int getPk() {
+        return pk;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setPk(int pk) {
+        if(this.pk == 0){
+            this.pk = pk;        
+        }
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.cpf);
+        hash = 97 * hash + Objects.hashCode(this.enderecos);
+        hash = 97 * hash + this.pk;
         return hash;
     }
 
@@ -74,16 +90,16 @@ public class Fornecedor {
             return false;
         }
         final Fornecedor other = (Fornecedor) obj;
+        if (this.pk != other.pk) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
-        if (!Objects.equals(this.cnpj, other.cnpj)) {
+        if (!Objects.equals(this.cpf, other.cpf)) {
             return false;
         }
-        if (!Objects.equals(this.telefones, other.telefones)) {
-            return false;
-        }
-        if (!Objects.equals(this.endereco, other.endereco)) {
+        if (!Objects.equals(this.enderecos, other.enderecos)) {
             return false;
         }
         return true;
@@ -91,10 +107,7 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return "Fornecedor{" + "nome=" + nome + ", cnpj=" + cnpj + ", telefones=" + telefones + ", endereco=" + endereco + '}';
+        return "Fornecedor{" + "nome=" + nome + ", cpf=" + cpf + ", enderecos=" + enderecos + ", pk=" + pk + '}';
     }
-       
-    public void print(){
-        System.out.println(this);
-    }
+
 }
