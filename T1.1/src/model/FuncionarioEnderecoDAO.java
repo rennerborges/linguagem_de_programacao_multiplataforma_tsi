@@ -12,12 +12,12 @@ import t1.pkg1.controller.Endereco;
  *
  * @author renner
  */
-public class FornecedorEnderecoDAO {
+public class FuncionarioEnderecoDAO {
     public static void create(Endereco endereco) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         PreparedStatement stm = conn.prepareStatement(
-                "INSERT INTO fornecedor_endereco (fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep) VALUES (?,?,?,?,?,?,?)",
+                "INSERT INTO funcionário_endereco (fk_funcionario, logradouro, bairro, cidade, estado, pais, cep) VALUES (?,?,?,?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS
         );
         
@@ -41,16 +41,15 @@ public class FornecedorEnderecoDAO {
         stm.close();
         
     }
-    
     public static Endereco retrieve(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM fornecedor_endereco WHERE pk_endereco =" + pk);
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM funcionário_endereco WHERE pk_endereco =" + pk);
         
         Endereco endereco = null;
         
         if(rs.next()){
-            int fk_fornecedor = rs.getInt("fk_fornecedor");
+            int fk_funcionario = rs.getInt("fk_funcionario");
             String logradouro = rs.getString("logradouro");
             String bairro = rs.getString("bairro");
             String cidade = rs.getString("cidade");
@@ -58,7 +57,7 @@ public class FornecedorEnderecoDAO {
             String pais = rs.getString("pais");
             String cep = rs.getString("cep");
             
-            endereco = new Endereco(pk, fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep);
+            endereco = new Endereco(pk, fk_funcionario, logradouro, bairro, cidade, estado, pais, cep);
         }
             
         return endereco;
@@ -71,13 +70,13 @@ public class FornecedorEnderecoDAO {
     public static ArrayList<Endereco> retrieveAll() throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM fornecedor_endereco ORDER BY pk_endereco");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM funcionário_endereco ORDER BY pk_endereco");
         
         ArrayList<Endereco> aux = new ArrayList<>();
         
         while(rs.next()){
             int pk_endereco = rs.getInt("pk_endereco");
-            int fk_fornecedor = rs.getInt("fk_fornecedor");
+            int fk_funcionario = rs.getInt("fk_funcionario");
             String logradouro = rs.getString("logradouro");
             String bairro = rs.getString("bairro");
             String cidade = rs.getString("cidade");
@@ -85,16 +84,16 @@ public class FornecedorEnderecoDAO {
             String pais = rs.getString("pais");
             String cep = rs.getString("cep");
             
-            aux.add(new Endereco(pk_endereco, fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep));
+            aux.add(new Endereco(pk_endereco, fk_funcionario, logradouro, bairro, cidade, estado, pais, cep));
         }
             
         return aux;
     }
     
-    public static ArrayList<Endereco> retrieveAllByFornecedor(int fk_fornecedor) throws SQLException{
+    public static ArrayList<Endereco> retrieveAllByFuncionario(int fk_funcionario) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM fornecedor_endereco WHERE fk_fornecedor ="+ fk_fornecedor + "ORDER BY pk_endereco");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM funcionário_endereco WHERE fk_funcionario ="+ fk_funcionario + "ORDER BY pk_endereco");
         
         ArrayList<Endereco> aux = new ArrayList<>();
         
@@ -107,7 +106,7 @@ public class FornecedorEnderecoDAO {
             String pais = rs.getString("pais");
             String cep = rs.getString("cep");
             
-            aux.add(new Endereco(pk_endereco, fk_fornecedor, logradouro, bairro, cidade, estado, pais, cep));
+            aux.add(new Endereco(pk_endereco, fk_funcionario, logradouro, bairro, cidade, estado, pais, cep));
         }
             
         return aux;
@@ -122,7 +121,7 @@ public class FornecedorEnderecoDAO {
         Connection conn = BancoDados.createConnection();
 
         PreparedStatement stm = conn.prepareStatement(
-                "UPDATE fornecedor_endereco SET fk_fornecedor = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, cep = ? WHERE pk_endereco = ?"
+                "UPDATE funcionário_endereco SET fk_funcionario = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, cep = ? WHERE pk_endereco = ?"
         );
         
         System.out.println(endereco.getBairro());
@@ -143,11 +142,10 @@ public class FornecedorEnderecoDAO {
         endereco.resetStatus();
     }
     
-    
     public static void delete(int pk_endereco) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        conn.createStatement().execute("DELETE FROM fornecedor_endereco WHERE pk_endereco="+ pk_endereco);
+        conn.createStatement().execute("DELETE FROM funcionário_endereco WHERE pk_endereco="+ pk_endereco);
     }
     
     public static void delete(Endereco endereco) throws SQLException{
