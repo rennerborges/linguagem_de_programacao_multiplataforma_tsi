@@ -132,6 +132,8 @@ public class FuncionarioDAO {
         //Percorrendo o array de endereços verificando se existe para atualizar
         //Ou se é para ser criado        
         
+        CargoDAO.update(funcionario.getCargo());
+        
         for(int i = 0; i < enderecos.size(); i++ ){
             Endereco endereco = funcionario.getEnderecos().get(i);
             
