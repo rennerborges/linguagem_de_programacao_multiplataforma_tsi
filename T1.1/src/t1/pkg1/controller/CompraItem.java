@@ -40,6 +40,14 @@ public class CompraItem {
         this.qtd = qtd;
         this.valorUnitario = valorUnitario;
     }
+
+    public CompraItem(Produto produto, int qtd, float valorUnitario) {
+        this.produto = produto;
+        this.qtd = qtd;
+        this.valorUnitario = valorUnitario;
+    }
+    
+    
     
     public int getStatus() {
         return this.status;

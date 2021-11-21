@@ -17,6 +17,10 @@ public class CompraItemDAO {
     public static void create(CompraItem compraItem) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
+        if(compraItem.getProduto().getPk() == 0){
+            ProdutoDAO.create(compraItem.getProduto());
+        }
+        
         PreparedStatement stm = conn.prepareStatement(
                 "INSERT INTO compra_item (fk_compra, fk_produto, qtd, valor_unitario) VALUES (?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS
@@ -116,7 +120,7 @@ public class CompraItemDAO {
         }
        
         Connection conn = BancoDados.createConnection();
-
+        
         PreparedStatement stm = conn.prepareStatement(
                 "UPDATE compra_item SET fk_compra = ?, fk_produto = ?, qtd = ?, valor_unitario = ? WHERE pk_item = ?"
         );
@@ -125,6 +129,7 @@ public class CompraItemDAO {
         stm.setInt(2, compraItem.getProduto().getPk());
         stm.setInt(3, compraItem.getQtd());
         stm.setFloat(4, compraItem.getValorUnitario());
+        stm.setInt(5, compraItem.getPk());
 
         stm.execute();
         
