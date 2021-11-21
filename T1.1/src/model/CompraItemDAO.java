@@ -147,4 +147,10 @@ public class CompraItemDAO {
     public static void delete(CompraItem compraItem) throws SQLException{
         delete(compraItem.getPk());
     }
+    
+    public static void deleteAllByCompra(int fk_compra) throws SQLException{
+        Connection conn = BancoDados.createConnection();
+        
+        conn.createStatement().execute("DELETE FROM compra_item WHERE fk_compra ="+ fk_compra);
+    }
 }

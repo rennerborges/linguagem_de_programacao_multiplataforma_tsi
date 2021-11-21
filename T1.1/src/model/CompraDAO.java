@@ -107,6 +107,8 @@ public class CompraDAO {
     public static void delete(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
+        CompraItemDAO.deleteAllByCompra(pk);
+        
         conn.createStatement().execute("DELETE FROM compra WHERE pk_compra ="+ pk);
 
     }
@@ -122,9 +124,11 @@ public class CompraDAO {
                 "UPDATE compra SET fk_fornecedor = ?, numero = ?, data = ? WHERE pk_compra= ?"
         );
         
+        java.sql.Date date = new java.sql.Date (compra.getData().getTime());
+        
         stm.setInt(1, compra.getFornecedor().getPk());
         stm.setInt(2, compra.getNumero());
-        stm.setDate(3, (Date) compra.getData());
+        stm.setDate(3, date);
         stm.setInt(4, compra.getPk());
 
 
