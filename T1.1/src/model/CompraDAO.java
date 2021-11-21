@@ -23,9 +23,11 @@ public class CompraDAO {
                 Statement.RETURN_GENERATED_KEYS
         );
         
+        java.sql.Date date = new java.sql.Date (compra.getData().getTime());
+        
         stm.setInt(1, compra.getFornecedor().getPk());
         stm.setInt(2, compra.getNumero());
-        stm.setDate(3, (Date) compra.getData());
+        stm.setDate(3, date);
         
         stm.execute();
         
@@ -150,10 +152,10 @@ public class CompraDAO {
                 CompraItemDAO.create(compraItem);
                 continue;
             }
-            
+//            
             CompraItemDAO.update(compraItem);
         }
-        
+//        
         FornecedorDAO.update(compra.getFornecedor());
     }
 }
