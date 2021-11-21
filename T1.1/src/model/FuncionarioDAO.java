@@ -26,6 +26,8 @@ public class FuncionarioDAO {
         
         if(cargo.getPk_cargo() == 0){
             CargoDAO.create(cargo);
+        }else{
+            CargoDAO.update(cargo);
         }
         
         stm.setString(1, funcionario.getNome());
