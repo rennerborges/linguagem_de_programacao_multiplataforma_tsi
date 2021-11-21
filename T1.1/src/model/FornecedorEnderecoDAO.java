@@ -124,8 +124,6 @@ public class FornecedorEnderecoDAO {
         PreparedStatement stm = conn.prepareStatement(
                 "UPDATE fornecedor_endereco SET fk_fornecedor = ?, logradouro = ?, bairro = ?, cidade = ?, estado = ?, pais = ?, cep = ? WHERE pk_endereco = ?"
         );
-        
-        System.out.println(endereco.getBairro());
          
         stm.setInt(1, endereco.getFk_usuario());
         stm.setString(2, endereco.getLogradouro());
