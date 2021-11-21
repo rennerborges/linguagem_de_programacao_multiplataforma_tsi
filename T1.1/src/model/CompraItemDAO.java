@@ -7,14 +7,14 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import t1.pkg1.controller.Produto;
-import t1.pkg1.controller.CompraItem;
+import t1.pkg1.controller.Item;
 
 /**
  *
  * @author renner
  */
 public class CompraItemDAO {
-    public static void create(CompraItem compraItem) throws SQLException{
+    public static void create(Item compraItem) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         if(compraItem.getProduto().getPk() == 0){
@@ -26,7 +26,7 @@ public class CompraItemDAO {
                 Statement.RETURN_GENERATED_KEYS
         );
         
-        stm.setInt(1, compraItem.getFkCompra());
+        stm.setInt(1, compraItem.getFk());
         stm.setInt(2, compraItem.getProduto().getPk());
         stm.setInt(3, compraItem.getQtd());
         stm.setFloat(4, compraItem.getValorUnitario());
@@ -44,12 +44,12 @@ public class CompraItemDAO {
         
     }
     
-    public static CompraItem retrieve(int pk) throws SQLException{
+    public static Item retrieve(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM compra_item WHERE pk_item =" + pk);
         
-        CompraItem compraItem = null;
+        Item compraItem = null;
         
         if(rs.next()){
             int fkCompra = rs.getInt("fk_compra");
@@ -59,22 +59,22 @@ public class CompraItemDAO {
             
             Produto produto = ProdutoDAO.retrieve(fkProduto);
         
-            compraItem = new CompraItem(pk, fkCompra, produto, qtd, valorUnitario);
+            compraItem = new Item(pk, fkCompra, produto, qtd, valorUnitario);
         }
             
         return compraItem;
     }
     
-    public static CompraItem retrieve(CompraItem compraItem) throws SQLException{
+    public static Item retrieve(Item compraItem) throws SQLException{
         return retrieve(compraItem.getPk());
     }
     
-    public static ArrayList<CompraItem> retrieveAll() throws SQLException{
+    public static ArrayList<Item> retrieveAll() throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM compra_item ORDER BY pk_item");
         
-        ArrayList<CompraItem> aux = new ArrayList<>();
+        ArrayList<Item> aux = new ArrayList<>();
         
         while(rs.next()){
             int pk = rs.getInt("pk_item");
@@ -85,18 +85,18 @@ public class CompraItemDAO {
             
             Produto produto = ProdutoDAO.retrieve(fkProduto);
  
-            aux.add(new CompraItem(pk, fkCompra, produto, qtd, valorUnitario));
+            aux.add(new Item(pk, fkCompra, produto, qtd, valorUnitario));
         }
             
         return aux;
     }
     
-    public static ArrayList<CompraItem> retrieveAllByCompra(int fk_compra) throws SQLException{
+    public static ArrayList<Item> retrieveAllByCompra(int fk_compra) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM compra_item WHERE fk_compra ="+ fk_compra + "ORDER BY pk_item");
         
-        ArrayList<CompraItem> aux = new ArrayList<>();
+        ArrayList<Item> aux = new ArrayList<>();
         
         while(rs.next()){
             int pk = rs.getInt("pk_item");
@@ -107,15 +107,15 @@ public class CompraItemDAO {
             
             Produto produto = ProdutoDAO.retrieve(fkProduto);
  
-            aux.add(new CompraItem(pk, fkCompra, produto, qtd, valorUnitario));
+            aux.add(new Item(pk, fkCompra, produto, qtd, valorUnitario));
         }
             
         return aux;
     }
     
-    public static void update(CompraItem compraItem) throws SQLException{
+    public static void update(Item compraItem) throws SQLException{
         
-        if(compraItem.getStatus() != CompraItem.ALTERADO){
+        if(compraItem.getStatus() != Item.ALTERADO){
             return;
         }
        
@@ -125,7 +125,7 @@ public class CompraItemDAO {
                 "UPDATE compra_item SET fk_compra = ?, fk_produto = ?, qtd = ?, valor_unitario = ? WHERE pk_item = ?"
         );
          
-        stm.setInt(1, compraItem.getFkCompra());
+        stm.setInt(1, compraItem.getFk());
         stm.setInt(2, compraItem.getProduto().getPk());
         stm.setInt(3, compraItem.getQtd());
         stm.setFloat(4, compraItem.getValorUnitario());
@@ -144,7 +144,7 @@ public class CompraItemDAO {
         conn.createStatement().execute("DELETE FROM compra_item WHERE pk_item="+ pk);
     }
     
-    public static void delete(CompraItem compraItem) throws SQLException{
+    public static void delete(Item compraItem) throws SQLException{
         delete(compraItem.getPk());
     }
     

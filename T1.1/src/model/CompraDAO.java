@@ -7,7 +7,7 @@ package model;
 import java.sql.*;
 import java.util.ArrayList;
 import t1.pkg1.controller.Compra;
-import t1.pkg1.controller.CompraItem;
+import t1.pkg1.controller.Item;
 import t1.pkg1.controller.Fornecedor;
 
 /**
@@ -44,11 +44,11 @@ public class CompraDAO {
             FornecedorDAO.update(compra.getFornecedor());
         }
         
-        ArrayList<CompraItem> compras = compra.getComprasItens();
+        ArrayList<Item> compras = compra.getComprasItens();
          
         if(compras != null) {
-            for(CompraItem compraItem : compras){
-                compraItem.setFkCompra(pk);
+            for(Item compraItem : compras){
+                compraItem.setFk(pk);
      
                 CompraItemDAO.create(compraItem);
             }
@@ -70,7 +70,7 @@ public class CompraDAO {
             Date data = rs.getDate("data");
             
             Fornecedor fornecedor = FornecedorDAO.retrieve(fkFornecedor);
-            ArrayList<CompraItem> comprasItens = CompraItemDAO.retrieveAllByCompra(pk);
+            ArrayList<Item> comprasItens = CompraItemDAO.retrieveAllByCompra(pk);
             
             compra = new Compra(pk, fornecedor, numero, data, comprasItens);
         }
@@ -96,7 +96,7 @@ public class CompraDAO {
             Date data = rs.getDate("data");
             
             Fornecedor fornecedor = FornecedorDAO.retrieve(fkFornecedor);
-            ArrayList<CompraItem> comprasItens = CompraItemDAO.retrieveAllByCompra(pk);
+            ArrayList<Item> comprasItens = CompraItemDAO.retrieveAllByCompra(pk);
             
             aux.add(new Compra(pk, fornecedor, numero, data, comprasItens));
         }
@@ -136,15 +136,15 @@ public class CompraDAO {
         
         stm.close();
         
-        ArrayList<CompraItem> comprasItens = compra.getComprasItens();
+        ArrayList<Item> comprasItens = compra.getComprasItens();
         
         //Percorrendo o array de endereços verificando se existe para atualizar
         //Ou se é para ser criado        
         
         for(int i = 0; i < comprasItens.size(); i++ ){
-            CompraItem compraItem = comprasItens.get(i);
+            Item compraItem = comprasItens.get(i);
             
-            if(compraItem.getStatus() == CompraItem.EXCLUIDO){
+            if(compraItem.getStatus() == Item.EXCLUIDO){
                 CompraItemDAO.delete(compraItem);
                 comprasItens.remove(compraItem);
                 i--;
@@ -152,7 +152,7 @@ public class CompraDAO {
             }
             
             if(compraItem.getPk()== 0){
-                compraItem.setFkCompra(compra.getPk());
+                compraItem.setFk(compra.getPk());
                 CompraItemDAO.create(compraItem);
                 continue;
             }

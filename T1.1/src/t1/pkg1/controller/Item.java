@@ -10,38 +10,38 @@ import java.util.Objects;
  *
  * @author renner
  */
-public class CompraItem {
+public class Item {
     public static final int INALTERADO = 0;
     public static final int ALTERADO = 1;
     public static final int EXCLUIDO = 2;
     
     private int pk;
-    private int fkCompra;
+    private int fk;
     private Produto produto;
     private int qtd;
     private float valorUnitario;
     
     private int status = INALTERADO;
 
-    public CompraItem() {
+    public Item() {
     }
 
-    public CompraItem(int fkCompra, Produto produto, int qtd, float valorUnitario) {
-        this.fkCompra = fkCompra;
+    public Item(int fk, Produto produto, int qtd, float valorUnitario) {
+        this.fk = fk;
         this.produto = produto;
         this.qtd = qtd;
         this.valorUnitario = valorUnitario;
     }
 
-    public CompraItem(int pk, int fkCompra, Produto produto, int qtd, float valorUnitario) {
+    public Item(int pk, int fk, Produto produto, int qtd, float valorUnitario) {
         this.pk = pk;
-        this.fkCompra = fkCompra;
+        this.fk = fk;
         this.produto = produto;
         this.qtd = qtd;
         this.valorUnitario = valorUnitario;
     }
 
-    public CompraItem(Produto produto, int qtd, float valorUnitario) {
+    public Item(Produto produto, int qtd, float valorUnitario) {
         this.produto = produto;
         this.qtd = qtd;
         this.valorUnitario = valorUnitario;
@@ -71,13 +71,13 @@ public class CompraItem {
         }
     }
 
-    public int getFkCompra() {
-        return fkCompra;
+    public int getFk() {
+        return fk;
     }
 
-    public void setFkCompra(int fkCompra) {
+    public void setFk(int fk) {
         this.status = ALTERADO;
-        this.fkCompra = fkCompra;
+        this.fk = fk;
     }
 
     public Produto getProduto() {
@@ -111,7 +111,7 @@ public class CompraItem {
     public int hashCode() {
         int hash = 3;
         hash = 83 * hash + this.pk;
-        hash = 83 * hash + this.fkCompra;
+        hash = 83 * hash + this.fk;
         hash = 83 * hash + Objects.hashCode(this.produto);
         hash = 83 * hash + this.qtd;
         hash = 83 * hash + Float.floatToIntBits(this.valorUnitario);
@@ -129,11 +129,11 @@ public class CompraItem {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final CompraItem other = (CompraItem) obj;
+        final Item other = (Item) obj;
         if (this.pk != other.pk) {
             return false;
         }
-        if (this.fkCompra != other.fkCompra) {
+        if (this.fk != other.fk) {
             return false;
         }
         if (this.qtd != other.qtd) {
@@ -150,7 +150,7 @@ public class CompraItem {
 
     @Override
     public String toString() {
-        return "CompraItem{" + "pk=" + pk + ", fkCompra=" + fkCompra + ", produto=" + produto + ", qtd=" + qtd + ", valorUnitario=" + valorUnitario + '}';
+        return "CompraItem{" + "pk=" + pk + ", fk=" + fk + ", produto=" + produto + ", qtd=" + qtd + ", valorUnitario=" + valorUnitario + '}';
     }
     
 }

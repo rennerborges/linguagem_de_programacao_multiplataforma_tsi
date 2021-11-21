@@ -17,19 +17,19 @@ public class Compra {
     private Fornecedor fornecedor;
     private int numero;
     private Date data;
-    private ArrayList<CompraItem> comprasItens;
+    private ArrayList<Item> comprasItens;
 
     public Compra() {
     }
 
-    public Compra(Fornecedor fornecedor, int numero, Date data, ArrayList<CompraItem> comprasItens) {
+    public Compra(Fornecedor fornecedor, int numero, Date data, ArrayList<Item> comprasItens) {
         this.fornecedor = fornecedor;
         this.numero = numero;
         this.data = data;
         this.comprasItens = comprasItens;
     }
 
-    public Compra(int pk, Fornecedor fornecedor, int numero, Date data, ArrayList<CompraItem> comprasItens) {
+    public Compra(int pk, Fornecedor fornecedor, int numero, Date data, ArrayList<Item> comprasItens) {
         this.pk = pk;
         this.fornecedor = fornecedor;
         this.numero = numero;
@@ -71,11 +71,11 @@ public class Compra {
         this.data = data;
     }
 
-    public ArrayList<CompraItem> getComprasItens() {
+    public ArrayList<Item> getComprasItens() {
         return comprasItens;
     }
 
-    public void setComprasItens(ArrayList<CompraItem> comprasItens) {
+    public void setComprasItens(ArrayList<Item> comprasItens) {
         this.comprasItens = comprasItens;
     }
 
