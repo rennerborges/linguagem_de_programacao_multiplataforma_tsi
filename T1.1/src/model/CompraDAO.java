@@ -18,6 +18,12 @@ public class CompraDAO {
     public static void create(Compra compra) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
+        if(compra.getFornecedor().getPk() == 0){
+            FornecedorDAO.create(compra.getFornecedor());
+        }else{
+            FornecedorDAO.update(compra.getFornecedor());
+        }
+        
         PreparedStatement stm = conn.prepareStatement(
                 "INSERT INTO compra (fk_fornecedor, numero, data) VALUES (?,?,?)",
                 Statement.RETURN_GENERATED_KEYS
@@ -37,12 +43,6 @@ public class CompraDAO {
         
         int pk = rs.getInt(1);
         compra.setPk(pk);
-     
-        if(compra.getFornecedor().getPk() == 0){
-            FornecedorDAO.create(compra.getFornecedor());
-        }else{
-            FornecedorDAO.update(compra.getFornecedor());
-        }
         
         ArrayList<Item> compras = compra.getComprasItens();
          
@@ -156,10 +156,10 @@ public class CompraDAO {
                 CompraItemDAO.create(compraItem);
                 continue;
             }
-//            
+            
             CompraItemDAO.update(compraItem);
         }
-//        
+      
         FornecedorDAO.update(compra.getFornecedor());
     }
 }
