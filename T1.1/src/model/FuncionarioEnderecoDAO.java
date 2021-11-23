@@ -90,10 +90,10 @@ public class FuncionarioEnderecoDAO {
         return aux;
     }
     
-    public static ArrayList<Endereco> retrieveAllByFuncionario(int fk_funcionario) throws SQLException{
+    public static ArrayList<Endereco> retrieveAllByFuncionario(int fkFuncionario) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM funcionário_endereco WHERE fk_funcionario ="+ fk_funcionario + "ORDER BY pk_endereco");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM funcionário_endereco WHERE fk_funcionario ="+ fkFuncionario + "ORDER BY pk_endereco");
         
         ArrayList<Endereco> aux = new ArrayList<>();
         
@@ -106,7 +106,7 @@ public class FuncionarioEnderecoDAO {
             String pais = rs.getString("pais");
             String cep = rs.getString("cep");
             
-            aux.add(new Endereco(pk_endereco, fk_funcionario, logradouro, bairro, cidade, estado, pais, cep));
+            aux.add(new Endereco(pk_endereco, fkFuncionario, logradouro, bairro, cidade, estado, pais, cep));
         }
             
         return aux;

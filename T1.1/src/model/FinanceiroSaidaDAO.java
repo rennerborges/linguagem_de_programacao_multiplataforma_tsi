@@ -12,12 +12,12 @@ import t1.pkg1.controller.Financeiro;
  *
  * @author renner
  */
-public class FinanceiroEntradaDAO {
-     public static void create(Financeiro financeiro) throws SQLException{
+public class FinanceiroSaidaDAO {
+    public static void create(Financeiro financeiro) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         PreparedStatement stm = conn.prepareStatement(
-                "INSERT INTO financeiro_entrada (fk_venda, data_emissao, data_vencimento, data_baixa, valor, forma_recebimento) VALUES (?,?,?,?,?,?)",
+                "INSERT INTO financeiro_saida (fk_compra, data_emissao, data_vencimento, data_baixa, valor, forma_pagamento) VALUES (?,?,?,?,?,?)",
                 Statement.RETURN_GENERATED_KEYS
         );
         
@@ -42,26 +42,25 @@ public class FinanceiroEntradaDAO {
         financeiro.setPk(pk);
         
         stm.close();
-        
     }
-     
+    
     public static Financeiro retrieve(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM financeiro_entrada WHERE pk_financeiro=" + pk);
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM financeiro_saida WHERE pk_financeiro=" + pk);
         
         Financeiro financeiro = null;
         
         if(rs.next()){
-            int fkVenda = rs.getInt("fk_venda");
+            int fkCompra = rs.getInt("fk_compra");
             Date dataEmissao = rs.getDate("data_emissao");
             Date dataVencimento = rs.getDate("data_vencimento");
             Date dataBaixa = rs.getDate("data_baixa");
             float valor = rs.getFloat("valor");
-            String formaRecebimento = rs.getString("forma_recebimento");
+            String formaPagamento = rs.getString("forma_pagamento");
             
             
-            financeiro = new Financeiro(pk, fkVenda, dataEmissao, dataVencimento, dataBaixa, valor, formaRecebimento);
+            financeiro = new Financeiro(pk, fkCompra, dataEmissao, dataVencimento, dataBaixa, valor, formaPagamento);
         }
             
         return financeiro;
@@ -74,29 +73,29 @@ public class FinanceiroEntradaDAO {
     public static ArrayList<Financeiro> retrieveAll() throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM financeiro_entrada ORDER BY pk_financeiro");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM financeiro_saida ORDER BY pk_financeiro");
         
         ArrayList<Financeiro> aux = new ArrayList<>();
         
         while(rs.next()){
             int pk = rs.getInt("pk_financeiro");
-            int fkVenda = rs.getInt("fk_venda");
+            int fkCompra = rs.getInt("fk_compra");
             Date dataEmissao = rs.getDate("data_emissao");
             Date dataVencimento = rs.getDate("data_vencimento");
             Date dataBaixa = rs.getDate("data_baixa");
             float valor = rs.getFloat("valor");
-            String formaRecebimento = rs.getString("forma_recebimento");
+            String formaPagamento = rs.getString("forma_pagamento");
             
-            aux.add(new Financeiro(pk, fkVenda, dataEmissao, dataVencimento, dataBaixa, valor, formaRecebimento));
+            aux.add(new Financeiro(pk, fkCompra, dataEmissao, dataVencimento, dataBaixa, valor, formaPagamento));
         }
             
         return aux;
     }
     
-    public static ArrayList<Financeiro> retrieveAllByVenda(int fkVenda) throws SQLException{
+    public static ArrayList<Financeiro> retrieveAllByCompra(int fkCompra) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM financeiro_entrada WHERE fk_venda="+ fkVenda + "ORDER BY pk_financeiro");
+        ResultSet rs = conn.createStatement().executeQuery("SELECT * FROM financeiro_saida WHERE fk_compra="+ fkCompra + "ORDER BY pk_financeiro");
         
         ArrayList<Financeiro> aux = new ArrayList<>();
         
@@ -106,9 +105,9 @@ public class FinanceiroEntradaDAO {
             Date dataVencimento = rs.getDate("data_vencimento");
             Date dataBaixa = rs.getDate("data_baixa");
             float valor = rs.getFloat("valor");
-            String formaRecebimento = rs.getString("forma_recebimento");
+            String formaPagamento = rs.getString("forma_pagamento");
             
-            aux.add(new Financeiro(pk, fkVenda, dataEmissao, dataVencimento, dataBaixa, valor, formaRecebimento));
+            aux.add(new Financeiro(pk, fkCompra, dataEmissao, dataVencimento, dataBaixa, valor, formaPagamento));
         }
             
         return aux;
@@ -123,7 +122,7 @@ public class FinanceiroEntradaDAO {
         Connection conn = BancoDados.createConnection();
 
         PreparedStatement stm = conn.prepareStatement(
-                "UPDATE financeiro_entrada SET fk_venda = ?, data_emissao = ?, data_vencimento = ?, data_baixa = ?, valor = ?, forma_recebimento = ?  WHERE pk_financeiro = ?"
+                "UPDATE financeiro_saida SET fk_compra = ?, data_emissao = ?, data_vencimento = ?, data_baixa = ?, valor = ?, forma_pagamento = ?  WHERE pk_financeiro = ?"
         );
         
         java.sql.Date dataEmissao = new java.sql.Date (financeiro.getDataEmissao().getTime());
@@ -148,16 +147,16 @@ public class FinanceiroEntradaDAO {
     public static void delete(int pk) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        conn.createStatement().execute("DELETE FROM financeiro_entrada WHERE pk_financeiro ="+ pk);
+        conn.createStatement().execute("DELETE FROM financeiro_saida WHERE pk_financeiro ="+ pk);
     }
     
     public static void delete(Financeiro financeiro) throws SQLException{
         delete(financeiro.getPk());
     }
     
-    public static void deleteAllByCliente(int fk_venda) throws SQLException{
+    public static void deleteAllByCliente(int fk_compra) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
-        conn.createStatement().execute("DELETE FROM financeiro_entrada WHERE fk_venda="+ fk_venda);
+        conn.createStatement().execute("DELETE FROM financeiro_saida WHERE fk_compra="+ fk_compra);
     }
 }
