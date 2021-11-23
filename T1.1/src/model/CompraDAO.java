@@ -20,8 +20,6 @@ public class CompraDAO {
         
         if(compra.getFornecedor().getPk() == 0){
             FornecedorDAO.create(compra.getFornecedor());
-        }else{
-            FornecedorDAO.update(compra.getFornecedor());
         }
         
         PreparedStatement stm = conn.prepareStatement(

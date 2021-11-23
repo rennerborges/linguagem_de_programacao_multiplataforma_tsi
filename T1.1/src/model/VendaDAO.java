@@ -21,14 +21,10 @@ public class VendaDAO {
         
         if(venda.getVendedor().getPk() == 0){
             FuncionarioDAO.create(venda.getVendedor());
-        }else{
-            FuncionarioDAO.update(venda.getVendedor());
         }
         
         if(venda.getCliente().getPk_cliente() == 0){
             ClienteDAO.create(venda.getCliente());
-        }else{
-            ClienteDAO.update(venda.getCliente());
         }
         
         PreparedStatement stm = conn.prepareStatement(
