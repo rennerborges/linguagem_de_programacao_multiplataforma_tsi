@@ -37,6 +37,12 @@ public class Financeiro {
         this.formaPagamento = formaPagamento;
     }
 
+    public Financeiro(Date dataEmissao, Date dataVencimento, float valor) {
+        this.dataEmissao = dataEmissao;
+        this.dataVencimento = dataVencimento;
+        this.valor = valor;
+    }
+    
     public Financeiro(int pk, int fk, Date dataEmissao, Date dataVencimento, Date dataBaixa, float valor, String formaPagamento) {
         this.pk = pk;
         this.fk = fk;
