@@ -13,13 +13,14 @@ import java.util.Objects;
  * @author renner
  */
 public class Venda {
-   private int pk;
-   private Cliente cliente;
-   private Funcionario vendedor;
-   private int numero;
-   private Date date;
-   private ArrayList<Item> vendasItens;
-
+    private int pk;
+    private Cliente cliente;
+    private Funcionario vendedor;
+    private int numero;
+    private Date date;
+    private ArrayList<Item> vendasItens;
+    private ArrayList<Financeiro> financeiros;
+   
     public Venda() {
     }
 
@@ -31,6 +32,15 @@ public class Venda {
         this.vendasItens = vendasItens;
     }
 
+    public Venda(Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens, ArrayList<Financeiro> financeiros) {
+        this.cliente = cliente;
+        this.vendedor = vendedor;
+        this.numero = numero;
+        this.date = date;
+        this.vendasItens = vendasItens;
+        this.financeiros = financeiros;
+    }
+    
     public Venda(int pk, Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens) {
         this.pk = pk;
         this.cliente = cliente;
@@ -39,6 +49,18 @@ public class Venda {
         this.date = date;
         this.vendasItens = vendasItens;
     }
+
+    public Venda(int pk, Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens, ArrayList<Financeiro> financeiros) {
+        this.pk = pk;
+        this.cliente = cliente;
+        this.vendedor = vendedor;
+        this.numero = numero;
+        this.date = date;
+        this.vendasItens = vendasItens;
+        this.financeiros = financeiros;
+    }
+    
+    
 
     public int getPk() {
         return pk;
@@ -90,15 +112,24 @@ public class Venda {
         this.vendasItens = vendasItens;
     }
 
+    public ArrayList<Financeiro> getFinanceiros() {
+        return financeiros;
+    }
+
+    public void setFinanceiros(ArrayList<Financeiro> financeiros) {
+        this.financeiros = financeiros;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + this.pk;
-        hash = 71 * hash + Objects.hashCode(this.cliente);
-        hash = 71 * hash + Objects.hashCode(this.vendedor);
-        hash = 71 * hash + this.numero;
-        hash = 71 * hash + Objects.hashCode(this.date);
-        hash = 71 * hash + Objects.hashCode(this.vendasItens);
+        int hash = 7;
+        hash = 47 * hash + this.pk;
+        hash = 47 * hash + Objects.hashCode(this.cliente);
+        hash = 47 * hash + Objects.hashCode(this.vendedor);
+        hash = 47 * hash + this.numero;
+        hash = 47 * hash + Objects.hashCode(this.date);
+        hash = 47 * hash + Objects.hashCode(this.vendasItens);
+        hash = 47 * hash + Objects.hashCode(this.financeiros);
         return hash;
     }
 
@@ -132,12 +163,15 @@ public class Venda {
         if (!Objects.equals(this.vendasItens, other.vendasItens)) {
             return false;
         }
+        if (!Objects.equals(this.financeiros, other.financeiros)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Venda{" + "pk=" + pk + ", cliente=" + cliente + ", vendedor=" + vendedor + ", numero=" + numero + ", date=" + date + ", vendasItens=" + vendasItens + '}';
+        return "Venda{" + "pk=" + pk + ", cliente=" + cliente + ", vendedor=" + vendedor + ", numero=" + numero + ", date=" + date + ", vendasItens=" + vendasItens + ", financeiros=" + financeiros + '}';
     }
-   
+
 }

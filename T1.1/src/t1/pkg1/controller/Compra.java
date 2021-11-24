@@ -18,7 +18,8 @@ public class Compra {
     private int numero;
     private Date data;
     private ArrayList<Item> comprasItens;
-
+    private ArrayList<Financeiro> pagamentos;
+    
     public Compra() {
     }
 
@@ -37,6 +38,23 @@ public class Compra {
         this.comprasItens = comprasItens;
     }
 
+    public Compra(int pk, Fornecedor fornecedor, int numero, Date data, ArrayList<Item> comprasItens, ArrayList<Financeiro> pagamentos) {
+        this.pk = pk;
+        this.fornecedor = fornecedor;
+        this.numero = numero;
+        this.data = data;
+        this.comprasItens = comprasItens;
+        this.pagamentos = pagamentos;
+    }
+
+    public Compra(Fornecedor fornecedor, int numero, Date data, ArrayList<Item> comprasItens, ArrayList<Financeiro> pagamentos) {
+        this.fornecedor = fornecedor;
+        this.numero = numero;
+        this.data = data;
+        this.comprasItens = comprasItens;
+        this.pagamentos = pagamentos;
+    }
+    
     public int getPk() {
         return pk;
     }
@@ -79,14 +97,23 @@ public class Compra {
         this.comprasItens = comprasItens;
     }
 
+    public ArrayList<Financeiro> getPagamentos() {
+        return pagamentos;
+    }
+
+    public void setPagamentos(ArrayList<Financeiro> pagamentos) {
+        this.pagamentos = pagamentos;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + this.pk;
-        hash = 89 * hash + Objects.hashCode(this.fornecedor);
-        hash = 89 * hash + this.numero;
-        hash = 89 * hash + Objects.hashCode(this.data);
-        hash = 89 * hash + Objects.hashCode(this.comprasItens);
+        hash = 53 * hash + this.pk;
+        hash = 53 * hash + Objects.hashCode(this.fornecedor);
+        hash = 53 * hash + this.numero;
+        hash = 53 * hash + Objects.hashCode(this.data);
+        hash = 53 * hash + Objects.hashCode(this.comprasItens);
+        hash = 53 * hash + Objects.hashCode(this.pagamentos);
         return hash;
     }
 
@@ -117,12 +144,15 @@ public class Compra {
         if (!Objects.equals(this.comprasItens, other.comprasItens)) {
             return false;
         }
+        if (!Objects.equals(this.pagamentos, other.pagamentos)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Compra{" + "pk=" + pk + ", fornecedor=" + fornecedor + ", numero=" + numero + ", data=" + data + ", comprasItens=" + comprasItens + '}';
+        return "Compra{" + "pk=" + pk + ", fornecedor=" + fornecedor + ", numero=" + numero + ", data=" + data + ", comprasItens=" + comprasItens + ", pagamentos=" + pagamentos + '}';
     }
     
 }

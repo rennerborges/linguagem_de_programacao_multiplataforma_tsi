@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import t1.pkg1.controller.Compra;
 import t1.pkg1.controller.Item;
 import t1.pkg1.controller.Fornecedor;
+import t1.pkg1.controller.Financeiro;
+
 
 /**
  *
