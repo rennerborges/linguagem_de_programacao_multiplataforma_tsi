@@ -10,6 +10,7 @@ import t1.pkg1.controller.Venda;
 import t1.pkg1.controller.Item;
 import t1.pkg1.controller.Funcionario;
 import t1.pkg1.controller.Cliente;
+import t1.pkg1.controller.Financeiro;
 
 /**
  *
@@ -57,6 +58,16 @@ public class VendaDAO {
                 VendaItemDAO.create(item);
             }
         }
+        
+        ArrayList<Financeiro> recebimentos = venda.getRecebimentos();
+         
+        if(recebimentos != null) {
+            for(Financeiro financeiro : recebimentos){
+                financeiro.setFk(pk);
+     
+                FinanceiroEntradaDAO.create(financeiro);
+            }
+        }
 
         stm.close();
     }
@@ -77,8 +88,9 @@ public class VendaDAO {
             Funcionario funcionario = FuncionarioDAO.retrieve(fkVendedor);
             Cliente cliente = ClienteDAO.retrieve(fkCliente);
             ArrayList<Item> vendasItens = VendaItemDAO.retrieveAllByVenda(pk);
+            ArrayList<Financeiro> recebimentos = FinanceiroEntradaDAO.retrieveAllByVenda(pk);
             
-            venda = new Venda(pk, cliente, funcionario, numero, data, vendasItens);
+            venda = new Venda(pk, cliente, funcionario, numero, data, vendasItens, recebimentos);
         }
         
         return venda;
@@ -105,8 +117,9 @@ public class VendaDAO {
             Funcionario funcionario = FuncionarioDAO.retrieve(fkVendedor);
             Cliente cliente = ClienteDAO.retrieve(fkCliente);
             ArrayList<Item> vendasItens = VendaItemDAO.retrieveAllByVenda(pk);
+            ArrayList<Financeiro> recebimentos = FinanceiroEntradaDAO.retrieveAllByVenda(pk);
             
-            aux.add(new Venda(pk, cliente, funcionario, numero, data, vendasItens));
+            aux.add(new Venda(pk, cliente, funcionario, numero, data, vendasItens, recebimentos));
         }
         
         return aux;
@@ -116,6 +129,7 @@ public class VendaDAO {
         Connection conn = BancoDados.createConnection();
         
         VendaItemDAO.deleteAllByVenda(pk);
+        FinanceiroEntradaDAO.deleteAllByVenda(pk);
         
         conn.createStatement().execute("DELETE FROM venda WHERE pk_venda ="+ pk);
 
@@ -167,6 +181,30 @@ public class VendaDAO {
             }
             
             VendaItemDAO.update(item);
+        }
+        
+        ArrayList<Financeiro> recebimentos = venda.getRecebimentos();
+        
+        //Percorrendo o array de endereços verificando se existe para atualizar
+        //Ou se é para ser criado        
+        
+        for(int i = 0; i < recebimentos.size(); i++ ){
+            Financeiro financeiro = recebimentos.get(i);
+            
+            if(financeiro.getStatus() == Financeiro.EXCLUIDO){
+                FinanceiroEntradaDAO.delete(financeiro);
+                recebimentos.remove(financeiro);
+                i--;
+                continue;
+            }
+            
+            if(financeiro.getPk()== 0){
+                financeiro.setFk(venda.getPk());
+                FinanceiroEntradaDAO.create(financeiro);
+                continue;
+            }
+            
+            FinanceiroEntradaDAO.update(financeiro);
         }
       
         FuncionarioDAO.update(venda.getVendedor());

@@ -19,7 +19,7 @@ public class Venda {
     private int numero;
     private Date date;
     private ArrayList<Item> vendasItens;
-    private ArrayList<Financeiro> financeiros;
+    private ArrayList<Financeiro> recebimentos;
    
     public Venda() {
     }
@@ -32,13 +32,13 @@ public class Venda {
         this.vendasItens = vendasItens;
     }
 
-    public Venda(Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens, ArrayList<Financeiro> financeiros) {
+    public Venda(Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens, ArrayList<Financeiro> recebimentos) {
         this.cliente = cliente;
         this.vendedor = vendedor;
         this.numero = numero;
         this.date = date;
         this.vendasItens = vendasItens;
-        this.financeiros = financeiros;
+        this.recebimentos = recebimentos;
     }
     
     public Venda(int pk, Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens) {
@@ -50,14 +50,14 @@ public class Venda {
         this.vendasItens = vendasItens;
     }
 
-    public Venda(int pk, Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens, ArrayList<Financeiro> financeiros) {
+    public Venda(int pk, Cliente cliente, Funcionario vendedor, int numero, Date date, ArrayList<Item> vendasItens, ArrayList<Financeiro> recebimentos) {
         this.pk = pk;
         this.cliente = cliente;
         this.vendedor = vendedor;
         this.numero = numero;
         this.date = date;
         this.vendasItens = vendasItens;
-        this.financeiros = financeiros;
+        this.recebimentos = recebimentos;
     }
     
     
@@ -112,12 +112,12 @@ public class Venda {
         this.vendasItens = vendasItens;
     }
 
-    public ArrayList<Financeiro> getFinanceiros() {
-        return financeiros;
+    public ArrayList<Financeiro> getRecebimentos() {
+        return recebimentos;
     }
 
-    public void setFinanceiros(ArrayList<Financeiro> financeiros) {
-        this.financeiros = financeiros;
+    public void setRecebimentos(ArrayList<Financeiro> financeiros) {
+        this.recebimentos = financeiros;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class Venda {
         hash = 47 * hash + this.numero;
         hash = 47 * hash + Objects.hashCode(this.date);
         hash = 47 * hash + Objects.hashCode(this.vendasItens);
-        hash = 47 * hash + Objects.hashCode(this.financeiros);
+        hash = 47 * hash + Objects.hashCode(this.recebimentos);
         return hash;
     }
 
@@ -163,7 +163,7 @@ public class Venda {
         if (!Objects.equals(this.vendasItens, other.vendasItens)) {
             return false;
         }
-        if (!Objects.equals(this.financeiros, other.financeiros)) {
+        if (!Objects.equals(this.recebimentos, other.recebimentos)) {
             return false;
         }
         return true;
@@ -171,7 +171,7 @@ public class Venda {
 
     @Override
     public String toString() {
-        return "Venda{" + "pk=" + pk + ", cliente=" + cliente + ", vendedor=" + vendedor + ", numero=" + numero + ", date=" + date + ", vendasItens=" + vendasItens + ", financeiros=" + financeiros + '}';
+        return "Venda{" + "pk=" + pk + ", cliente=" + cliente + ", vendedor=" + vendedor + ", numero=" + numero + ", date=" + date + ", vendasItens=" + vendasItens + ", recebimentos=" + recebimentos + '}';
     }
 
 }

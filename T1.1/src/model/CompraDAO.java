@@ -53,6 +53,16 @@ public class CompraDAO {
                 CompraItemDAO.create(compraItem);
             }
         }
+        
+        ArrayList<Financeiro> pagamentos = compra.getPagamentos();
+         
+        if(pagamentos != null) {
+            for(Financeiro financeiro : pagamentos){
+                financeiro.setFk(pk);
+     
+                FinanceiroSaidaDAO.create(financeiro);
+            }
+        }
 
         stm.close();
     }
@@ -71,8 +81,9 @@ public class CompraDAO {
             
             Fornecedor fornecedor = FornecedorDAO.retrieve(fkFornecedor);
             ArrayList<Item> comprasItens = CompraItemDAO.retrieveAllByCompra(pk);
+            ArrayList<Financeiro> pagamentos = FinanceiroSaidaDAO.retrieveAllByCompra(pk);
             
-            compra = new Compra(pk, fornecedor, numero, data, comprasItens);
+            compra = new Compra(pk, fornecedor, numero, data, comprasItens, pagamentos);
         }
         
         return compra;
@@ -97,8 +108,9 @@ public class CompraDAO {
             
             Fornecedor fornecedor = FornecedorDAO.retrieve(fkFornecedor);
             ArrayList<Item> comprasItens = CompraItemDAO.retrieveAllByCompra(pk);
+            ArrayList<Financeiro> pagamentos = FinanceiroSaidaDAO.retrieveAllByCompra(pk);
             
-            aux.add(new Compra(pk, fornecedor, numero, data, comprasItens));
+            aux.add(new Compra(pk, fornecedor, numero, data, comprasItens, pagamentos));
         }
         
         return aux;
@@ -108,6 +120,7 @@ public class CompraDAO {
         Connection conn = BancoDados.createConnection();
         
         CompraItemDAO.deleteAllByCompra(pk);
+        FinanceiroSaidaDAO.deleteAllByCompra(pk);
         
         conn.createStatement().execute("DELETE FROM compra WHERE pk_compra ="+ pk);
 
@@ -158,6 +171,30 @@ public class CompraDAO {
             }
             
             CompraItemDAO.update(compraItem);
+        }
+        
+        ArrayList<Financeiro> pagamentos = compra.getPagamentos();
+        
+        //Percorrendo o array de endereços verificando se existe para atualizar
+        //Ou se é para ser criado        
+        
+        for(int i = 0; i < pagamentos.size(); i++ ){
+            Financeiro financeiro = pagamentos.get(i);
+            
+            if(financeiro.getStatus() == Financeiro.EXCLUIDO){
+                FinanceiroSaidaDAO.delete(financeiro);
+                pagamentos.remove(financeiro);
+                i--;
+                continue;
+            }
+            
+            if(financeiro.getPk()== 0){
+                financeiro.setFk(compra.getPk());
+                FinanceiroSaidaDAO.create(financeiro);
+                continue;
+            }
+            
+            FinanceiroSaidaDAO.update(financeiro);
         }
       
         FornecedorDAO.update(compra.getFornecedor());

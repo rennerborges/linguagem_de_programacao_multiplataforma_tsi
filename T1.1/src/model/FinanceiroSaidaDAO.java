@@ -154,7 +154,7 @@ public class FinanceiroSaidaDAO {
         delete(financeiro.getPk());
     }
     
-    public static void deleteAllByCliente(int fk_compra) throws SQLException{
+    public static void deleteAllByCompra(int fk_compra) throws SQLException{
         Connection conn = BancoDados.createConnection();
         
         conn.createStatement().execute("DELETE FROM financeiro_saida WHERE fk_compra="+ fk_compra);
