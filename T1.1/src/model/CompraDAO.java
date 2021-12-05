@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import t1.pkg1.controller.Compra;
 import t1.pkg1.controller.Item;
@@ -131,7 +132,7 @@ public class CompraDAO {
     }
     
     public static void update(Compra compra) throws SQLException{
-         Connection conn = BancoDados.createConnection();
+        Connection conn = BancoDados.createConnection();
         
         PreparedStatement stm = conn.prepareStatement(
                 "UPDATE compra SET fk_fornecedor = ?, numero = ?, data = ? WHERE pk_compra= ?"
