@@ -10,7 +10,7 @@
 <VBox prefHeight="312.0" prefWidth="342.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculadora.PrimaryController">
    <children>
       <Label text="Calculadora" />
-      <TextField fx:id="visor" editable="false" />
+      <TextField fx:id="visor" disable="true" editable="false" />
       <Pane prefHeight="193.0" prefWidth="302.0">
          <children>
             <Button contentDisplay="TOP" layoutX="14.0" layoutY="146.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="1" />
@@ -24,7 +24,7 @@
             <Button contentDisplay="TOP" layoutX="100.0" layoutY="39.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="9" />
             <Button contentDisplay="TOP" layoutX="100.0" layoutY="73.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="6" />
             <Button contentDisplay="TOP" layoutX="100.0" layoutY="109.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="3" />
-            <Button contentDisplay="TOP" layoutX="13.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" text="C" />
+            <Button contentDisplay="TOP" layoutX="13.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearLastOperation" text="C" textFill="#ff1212" />
             <Button contentDisplay="TOP" layoutX="55.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" text="CE" />
             <Button contentDisplay="TOP" layoutX="182.0" layoutY="38.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="140.0" prefWidth="65.0" text="=" />
             <Button contentDisplay="TOP" layoutX="138.0" layoutY="39.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="/" />
