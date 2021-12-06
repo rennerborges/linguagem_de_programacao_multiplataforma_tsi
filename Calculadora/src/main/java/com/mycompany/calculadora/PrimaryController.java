@@ -20,7 +20,6 @@ public class PrimaryController {
     void saveNumber(MouseEvent event) {
         
        Button button = ((Button) event.getSource());
-       int value = Integer.parseInt(button.getText());
        
        if(operation == null){
            numero1 += button.getText();
@@ -35,6 +34,15 @@ public class PrimaryController {
     
     @FXML
     void saveOperation(MouseEvent event) {
+        
+        if(!numero1.equals("") && !numero2.equals("") && operation != null){
+            resolve();
+        }
+        
+        if(numero1.equals("")){
+            return;
+        }
+        
         Button button = ((Button) event.getSource());
        
         operation = button.getText();
@@ -57,7 +65,7 @@ public class PrimaryController {
             verificado = true;
         }
         
-        if(!verificado){
+        if(!verificado && !numero1.equals("")){
             numero1  = numero1.substring(0, numero1.length()-1);
 
         }
@@ -65,6 +73,49 @@ public class PrimaryController {
         prepareVisor();
         
         
+    }
+    
+    @FXML
+    void clearAll() {
+        numero1 = "";
+        numero2 = "";
+        operation = null;
+        prepareVisor();
+
+    }
+    
+    @FXML
+    void resolve() {
+        float n1 = Float.parseFloat(numero1);
+        float n2 = Float.parseFloat(numero2);
+        
+        float resultado = 0.0f;
+        
+        if(operation.equals("+")){
+            resultado = n1 + n2;
+        }
+        
+        if(operation.equals("-")){
+            resultado = n1 - n2;
+        }
+        
+        if(operation.equals("/")){
+            resultado = n1 / n2;
+        }
+        
+        if(operation.equals("X")){
+            System.out.println(n1);
+            System.out.println(n2);
+
+            resultado = n1 * n2;
+        }
+        
+        operation = null;
+        numero1 = Float.toString(resultado);
+        numero2 = "";
+        
+        prepareVisor();
+
     }
     
     private void prepareVisor(){

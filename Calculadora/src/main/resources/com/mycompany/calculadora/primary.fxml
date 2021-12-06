@@ -24,9 +24,9 @@
             <Button contentDisplay="TOP" layoutX="100.0" layoutY="39.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="9" />
             <Button contentDisplay="TOP" layoutX="100.0" layoutY="73.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="6" />
             <Button contentDisplay="TOP" layoutX="100.0" layoutY="109.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="3" />
-            <Button contentDisplay="TOP" layoutX="13.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearLastOperation" text="C" textFill="#ff1212" />
-            <Button contentDisplay="TOP" layoutX="55.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" text="CE" />
-            <Button contentDisplay="TOP" layoutX="182.0" layoutY="38.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="140.0" prefWidth="65.0" text="=" />
+            <Button contentDisplay="TOP" layoutX="13.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearAll" text="C" textFill="#ff1212" />
+            <Button contentDisplay="TOP" layoutX="55.0" layoutY="2.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearLastOperation" text="CE" />
+            <Button contentDisplay="TOP" layoutX="182.0" layoutY="38.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#resolve" prefHeight="140.0" prefWidth="65.0" text="=" />
             <Button contentDisplay="TOP" layoutX="138.0" layoutY="39.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="/" />
             <Button contentDisplay="TOP" layoutX="138.0" layoutY="73.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" text="X" />
             <Button contentDisplay="TOP" layoutX="137.0" layoutY="109.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="-" />
