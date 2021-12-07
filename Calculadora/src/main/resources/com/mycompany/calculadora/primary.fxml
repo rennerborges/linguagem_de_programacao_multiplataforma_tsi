@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="534.0" prefWidth="446.0" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculadora.PrimaryController">
+<VBox prefHeight="534.0" prefWidth="446.0" spacing="20.0" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.calculadora.PrimaryController">
    <children>
-      <Label text="Calculadora">
+      <Label text="Calculadora" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font></Label>
@@ -20,24 +20,24 @@
          </font></TextField>
       <Pane prefHeight="376.0" prefWidth="302.0">
          <children>
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="1" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="2" />
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="158.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="4" />
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="5" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="7" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="5" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="158.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="8" />
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="1" />
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="2" />
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="4" />
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="7" />
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="5" />
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="8" />
             <Button contentDisplay="TOP" layoutX="160.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="9" />
-            <Button contentDisplay="TOP" layoutX="160.0" layoutY="158.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="6" />
+            <Button contentDisplay="TOP" layoutX="160.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="6" />
             <Button contentDisplay="TOP" layoutX="160.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="3" />
             <Button contentDisplay="TOP" layoutX="11.0" layoutY="2.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearAll" text="C" textFill="#ff1212" />
             <Button contentDisplay="TOP" layoutX="84.0" layoutY="2.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearLastOperation" text="CE" />
-            <Button contentDisplay="TOP" layoutX="311.0" layoutY="87.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#resolve" prefHeight="275.0" prefWidth="65.0" text="=" />
+            <Button contentDisplay="TOP" layoutX="311.0" layoutY="87.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#resolve" prefHeight="275.0" prefWidth="65.0" text="=" textFill="#1b5e20" />
             <Button contentDisplay="TOP" layoutX="236.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="/" />
             <Button contentDisplay="TOP" layoutX="236.0" layoutY="158.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" text="X" />
             <Button contentDisplay="TOP" layoutX="236.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="-" />
             <Button contentDisplay="TOP" layoutX="236.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="+" />
-            <Button contentDisplay="TOP" layoutX="10.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="0" />
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="0" />
+            <Button contentDisplay="TOP" layoutX="160.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="." />
          </children>
       </Pane>
    </children>
