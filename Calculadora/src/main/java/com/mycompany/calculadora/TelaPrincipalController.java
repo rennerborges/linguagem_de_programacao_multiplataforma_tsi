@@ -1,7 +1,8 @@
 package com.mycompany.calculadora;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import static java.lang.String.format;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -100,14 +101,11 @@ public class TelaPrincipalController {
         }
         
         if(operation.equals("/")){
-            resultado = n1 / n2;
+            resultado = numberFixedDecimal(n1 / n2);
         }
         
         if(operation.equals("X")){
-            System.out.println(n1);
-            System.out.println(n2);
-
-            resultado = n1 * n2;
+            resultado = numberFixedDecimal(n1 * n2);
         }
         
         operation = null;
@@ -124,8 +122,9 @@ public class TelaPrincipalController {
         
         visor.setText(numero1 + " " + operationString + " " + numero2);
     }
-    @FXML
-    private void switchToSecondary() throws IOException {
+    private float numberFixedDecimal(float value){
+       String result = String.format(java.util.Locale.US,"%.2f", value);
+       return Float.parseFloat(result);
     }
     
 

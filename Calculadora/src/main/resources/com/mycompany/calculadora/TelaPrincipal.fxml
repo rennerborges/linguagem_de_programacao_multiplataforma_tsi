@@ -14,30 +14,63 @@
          <font>
             <Font size="19.0" />
          </font></Label>
-      <TextField fx:id="visor" disable="true" editable="false" prefHeight="63.0" prefWidth="406.0">
+      <TextField fx:id="visor" disable="true" editable="false" prefHeight="63.0" prefWidth="406.0" style="-fx-background-color: #f5f5f5;">
          <font>
             <Font size="24.0" />
          </font></TextField>
       <Pane prefHeight="376.0" prefWidth="302.0">
          <children>
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="1" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="2" />
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="4" />
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="7" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="5" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="8" />
-            <Button contentDisplay="TOP" layoutX="160.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="9" />
-            <Button contentDisplay="TOP" layoutX="160.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="6" />
-            <Button contentDisplay="TOP" layoutX="160.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="3" />
-            <Button contentDisplay="TOP" layoutX="11.0" layoutY="2.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearAll" text="C" textFill="#ff1212" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="2.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearLastOperation" text="CE" />
-            <Button contentDisplay="TOP" layoutX="311.0" layoutY="87.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#resolve" prefHeight="275.0" prefWidth="65.0" text="=" textFill="#1b5e20" />
-            <Button contentDisplay="TOP" layoutX="236.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="/" />
-            <Button contentDisplay="TOP" layoutX="236.0" layoutY="158.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" text="X" />
-            <Button contentDisplay="TOP" layoutX="236.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="-" />
-            <Button contentDisplay="TOP" layoutX="236.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" text="+" />
-            <Button contentDisplay="TOP" layoutX="84.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="0" />
-            <Button contentDisplay="TOP" layoutX="160.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" text="." />
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="1">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="2">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="4">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="7">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="5">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="8">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="160.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="9">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="160.0" layoutY="156.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="6">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="160.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="3">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="11.0" layoutY="2.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearAll" style="-fx-background-color: #FFF;" text="C" textFill="#ff1212" />
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="2.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#clearLastOperation" style="-fx-background-color: #FFF;" text="CE" />
+            <Button contentDisplay="TOP" layoutX="311.0" layoutY="87.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#resolve" prefHeight="275.0" prefWidth="65.0" style="-fx-background-color: #FFF;" text="=" textFill="#1b5e20" />
+            <Button contentDisplay="TEXT_ONLY" layoutX="236.0" layoutY="86.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" style="-fx-background-color: #FFF;" text="/" />
+            <Button contentDisplay="TEXT_ONLY" layoutX="236.0" layoutY="158.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" style="-fx-background-color: #FFF;" text="X" />
+            <Button contentDisplay="TEXT_ONLY" layoutX="236.0" layoutY="232.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" style="-fx-background-color: #FFF;" text="-" />
+            <Button contentDisplay="TEXT_ONLY" layoutX="236.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveOperation" prefHeight="24.0" prefWidth="27.0" style="-fx-background-color: #FFF;" text="+" />
+            <Button contentDisplay="TOP" layoutX="84.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text="0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Button>
+            <Button contentDisplay="TOP" layoutX="160.0" layoutY="302.0" minHeight="60.0" minWidth="60.0" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#saveNumber" style="-fx-background-color: #FFF;" text=".">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font></Button>
          </children>
       </Pane>
    </children>
