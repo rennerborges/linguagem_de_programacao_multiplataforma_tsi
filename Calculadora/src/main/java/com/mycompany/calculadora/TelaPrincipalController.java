@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class PrimaryController {
+public class TelaPrincipalController {
     
     private String numero1 = "";
     private String numero2 = "";
@@ -126,7 +126,6 @@ public class PrimaryController {
     }
     @FXML
     private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
     }
     
 
